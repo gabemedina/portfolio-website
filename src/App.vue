@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import PortfolioSidebar from './components/PortfolioSidebar.vue'
 import ResumeSection from './components/ResumeSection.vue'
 import ExperienceItem from './components/ExperienceItem.vue'
@@ -10,6 +10,11 @@ import { resume } from './data/resume'
 import { useActiveSection } from './composables/useActiveSection'
 
 const contentPane = ref(null)
+let pointerFrame
+let pointerX = window.innerWidth / 2
+let pointerY = window.innerHeight / 2
+let cursorQuery
+let motionQuery
 
 const sections = computed(() => [
   resume.summary && { id: 'summary', label: 'Summary' },
@@ -23,6 +28,38 @@ const sections = computed(() => [
 ].filter(Boolean))
 
 const { activeSection, selectSection } = useActiveSection(sections, contentPane)
+
+function paintCursorLight() {
+  pointerFrame = undefined
+  document.documentElement.style.setProperty('--mouse-x', `${pointerX}px`)
+  document.documentElement.style.setProperty('--mouse-y', `${pointerY}px`)
+}
+
+function trackPointer(event) {
+  pointerX = event.clientX
+  pointerY = event.clientY
+  if (!pointerFrame) pointerFrame = requestAnimationFrame(paintCursorLight)
+}
+
+function syncCursorLight() {
+  const shouldTrack = cursorQuery.matches && !motionQuery.matches
+  window[shouldTrack ? 'addEventListener' : 'removeEventListener']('pointermove', trackPointer, { passive: true })
+}
+
+onMounted(() => {
+  cursorQuery = window.matchMedia('(hover: hover) and (pointer: fine)')
+  motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  syncCursorLight()
+  cursorQuery.addEventListener('change', syncCursorLight)
+  motionQuery.addEventListener('change', syncCursorLight)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('pointermove', trackPointer)
+  cursorQuery?.removeEventListener('change', syncCursorLight)
+  motionQuery?.removeEventListener('change', syncCursorLight)
+  if (pointerFrame) cancelAnimationFrame(pointerFrame)
+})
 
 function navigateToSection(id) {
   selectSection(id)
@@ -49,6 +86,13 @@ function navigateToSection(id) {
 
 <template>
   <main class="portfolio-shell">
+    <PortfolioSidebar
+      :person="resume.personal"
+      :sections="sections"
+      :active-section="activeSection"
+      @navigate="navigateToSection"
+    />
+
     <div ref="contentPane" class="resume-pane" tabindex="-1">
       <div class="resume-content">
         <ResumeSection id="summary" number="01" title="Summary">
@@ -107,14 +151,13 @@ function navigateToSection(id) {
           </ul>
           <p class="site-note">Designed and built with Vue. Content lives in one data file.</p>
         </ResumeSection>
+
+        <footer class="resume-footer">
+          <a :href="resume.personal.resumeUrl" download>
+            Download CV <span aria-hidden="true">↓</span>
+          </a>
+        </footer>
       </div>
     </div>
-
-    <PortfolioSidebar
-      :person="resume.personal"
-      :sections="sections"
-      :active-section="activeSection"
-      @navigate="navigateToSection"
-    />
   </main>
 </template>

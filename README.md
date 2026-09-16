@@ -24,7 +24,7 @@ The production files are written to `dist/`.
 
 Almost all visible résumé content is stored in `src/data/resume.js`. Update the `personal`, `experience`, `education`, `projects`, `skills`, `certifications`, `awards`, and `interests` values there.
 
-Replace `public/alex-morgan-resume.txt` with your PDF résumé and update `personal.resumeUrl` in the data file. Replace the example GitHub, LinkedIn, project, and demo URLs before publishing your own version.
+Place your PDF résumé in `public/` and make sure `personal.resumeUrl` matches its filename. Replace the example GitHub, LinkedIn, project, and demo URLs before publishing your own version.
 
 ## Add, remove, or reorder sections
 
@@ -36,4 +36,4 @@ The section order is defined by the `sections` computed value in `src/App.vue`, 
 
 ## Active section navigation
 
-`src/composables/useActiveSection.js` uses `IntersectionObserver` to observe each résumé section. On desktop, the observer uses the independently scrolling left pane as its root. On smaller screens, it observes the normal page viewport. A narrow activation band near the top of the reading area keeps transitions stable at section boundaries without an expensive scroll listener.
+`src/composables/useActiveSection.js` uses `IntersectionObserver` to observe each résumé section. On desktop, the observer uses the independently scrolling right pane as its root. On smaller screens, it observes the normal page viewport. A narrow activation band near the top of the reading area keeps transitions stable at section boundaries without an expensive scroll listener.
