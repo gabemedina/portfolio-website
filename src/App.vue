@@ -46,6 +46,17 @@ function syncCursorLight() {
   window[shouldTrack ? 'addEventListener' : 'removeEventListener']('pointermove', trackPointer, { passive: true })
 }
 
+function routeWheelToResume(event) {
+  const pane = contentPane.value
+  if (!pane || pane.contains(event.target) || window.matchMedia('(max-width: 800px)').matches) return
+
+  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? pane.clientHeight : 1
+  if (event.deltaY) {
+    event.preventDefault()
+    pane.scrollTop += event.deltaY * unit
+  }
+}
+
 onMounted(() => {
   cursorQuery = window.matchMedia('(hover: hover) and (pointer: fine)')
   motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -85,7 +96,7 @@ function navigateToSection(id) {
 </script>
 
 <template>
-  <main class="site-surface">
+  <main class="site-surface" @wheel="routeWheelToResume">
     <div class="portfolio-shell">
       <PortfolioSidebar
         :person="resume.personal"

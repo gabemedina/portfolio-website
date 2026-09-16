@@ -9,6 +9,7 @@
   --selection: #a9d5ff;
   --content-width: 68.75rem;
   --page-space: clamp(1.5rem, 3vw, 3.25rem);
+  --inner-space: clamp(2.25rem, 4.5vw, 4.875rem);
   --mouse-x: 50vw;
   --mouse-y: 42vh;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -34,7 +35,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-
 }
 .portfolio-shell { position: relative; z-index: 1; width: min(calc(100% - clamp(2rem, 7vw, 7rem)), var(--content-width)); height: 100dvh; margin-inline: auto; display: grid; grid-template-columns: minmax(22rem, .88fr) minmax(0, 1.12fr); overflow: hidden; }
 .sidebar, .resume-pane { position: relative; }
-.sidebar { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; padding: var(--page-space); border-right: 1px solid var(--border); overflow: hidden; }
+.sidebar { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; padding: var(--page-space); padding-right: var(--inner-space); overflow: hidden; }
 .sidebar-main { min-height: 0; }
 .identity-block { max-width: 29rem; }
 .eyebrow, .entry-aside p, .site-note { margin: 0; font-family: var(--mono); font-size: .75rem; font-weight: 650; line-height: 1.5; letter-spacing: .085em; text-transform: uppercase; }
@@ -51,7 +52,7 @@ h1 { margin: 0; white-space: nowrap; overflow-wrap: normal; font-size: clamp(3re
 .personal-details a:hover { color: var(--accent); text-decoration: underline; }
 
 .section-nav { display: grid; width: min(100%, 19rem); margin-top: clamp(2rem, 4vh, 3rem); }
-.section-nav a { position: relative; display: block; padding: .48rem 0; color: var(--muted); border-bottom: 1px solid var(--border); text-decoration: none; transition: color .18s ease, padding-left .18s ease; }
+.section-nav a { position: relative; display: block; padding: .48rem 0; color: var(--muted); text-decoration: none; transition: color .18s ease, padding-left .18s ease; }
 .section-nav a::after { content: ""; position: absolute; right: 0; bottom: -1px; width: 0; height: 2px; background: var(--accent); transition: width .22s ease; }
 .section-nav a strong { font-size: .84rem; font-weight: 540; }
 .section-nav a:hover { color: var(--foreground); padding-left: .3rem; }
@@ -63,12 +64,12 @@ h1 { margin: 0; white-space: nowrap; overflow-wrap: normal; font-size: clamp(3re
 .social-links svg { width: 1.15rem; height: 1.15rem; fill: currentColor; }
 
 .resume-pane { height: 100dvh; overflow-y: auto; overscroll-behavior: contain; scrollbar-color: var(--accent) transparent; scroll-behavior: smooth; }
-.resume-content { width: 100%; padding: 0 var(--page-space); }
+.resume-content { width: 100%; padding: 0 var(--page-space); padding-left: var(--inner-space); }
 .resume-section { position: relative; padding: 2.75rem 0; border-top: 1px solid var(--border); scroll-margin-top: 2rem; }
 .resume-section:first-child { border-top: 0; padding-top: clamp(4rem, 9vh, 6.5rem); }
 .section-body { margin: 0; }
 .summary-copy { max-width: 40rem; margin: 0; font-size: clamp(1.25rem, 1.65vw, 1.55rem); line-height: 1.46; letter-spacing: -.022em; }
-.working-note { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.25rem; margin: 2rem 0 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+.working-note { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.25rem; margin: 2rem 0 0; padding-top: 1rem; }
 .working-note dt { color: var(--muted); font-family: var(--mono); font-size: .73rem; text-transform: uppercase; letter-spacing: .08em; }
 .working-note dd { margin: 0; font-size: .95rem; line-height: 1.55; }
 
@@ -97,18 +98,18 @@ h1 { margin: 0; white-space: nowrap; overflow-wrap: normal; font-size: clamp(3re
 .project-links a:hover span, .project-links a:focus-visible span { transform: translate(.12rem, -.12rem); }
 
 .skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem 1.6rem; }
-.skill-group { padding: .8rem 0 1rem; border-bottom: 1px solid var(--border); }
+.skill-group { padding: .8rem 0 1rem; }
 .skill-group h3 { margin: 0; color: var(--foreground); font-size: .9rem; font-weight: 620; letter-spacing: -.01em; }
 .skill-group .skill-pills { margin-top: .7rem; }
 .compact-list { margin: 0; padding: 0; list-style: none; }
-.compact-list li { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.compact-list li { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 1rem 0; }
 .compact-list strong, .compact-list span { display: block; }
 .compact-list strong { margin-bottom: .3rem; }
 .compact-list div span, .compact-list > li > span { color: var(--muted); font-size: .9rem; line-height: 1.5; }
 .interest-list { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0; padding: 0; list-style: none; }
 .interest-list li { padding: .45rem .7rem; color: #b9d1e9; border: 1px solid var(--border); border-radius: 999px; font-size: .84rem; }
 .site-note { margin-top: 2.25rem; color: var(--muted); }
-.resume-footer { display: flex; justify-content: flex-end; padding: 2.25rem 0 4rem; border-top: 1px solid var(--border); }
+.resume-footer { display: flex; justify-content: flex-end; padding: 2.25rem 0 4rem; }
 .resume-footer a { display: inline-flex; align-items: center; gap: .7rem; font-family: var(--mono); font-size: .77rem; font-weight: 650; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; }
 .resume-footer a span { color: var(--accent); transition: transform .18s ease; }
 .resume-footer a:hover { color: var(--accent); }
@@ -116,7 +117,8 @@ h1 { margin: 0; white-space: nowrap; overflow-wrap: normal; font-size: clamp(3re
 
 @media (max-width: 1100px) and (min-width: 801px) {
   .portfolio-shell { width: calc(100% - 2rem); grid-template-columns: minmax(20.5rem, .82fr) minmax(0, 1.18fr); }
-  .sidebar, .resume-content { padding-inline: 2rem; }
+  .sidebar { padding-inline: 2rem 3rem; }
+  .resume-content { padding-inline: 3rem 2rem; }
   h1 { font-size: clamp(2.75rem, 5.5vw, 3.55rem); }
 }
 @media (max-height: 760px) and (min-width: 801px) {
