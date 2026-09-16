@@ -1,0 +1,5 @@
+Alex Morgan — Software Engineer
+Chicago, IL · alex.morgan@example.com
+
+This is a downloadable resume placeholder. Replace this file with your PDF resume,
+then update personal.resumeUrl in src/data/resume.js.
