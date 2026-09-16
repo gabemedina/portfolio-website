@@ -48,7 +48,7 @@ function syncCursorLight() {
 
 function routeWheelToResume(event) {
   const pane = contentPane.value
-  if (!pane || pane.contains(event.target) || window.matchMedia('(max-width: 800px)').matches) return
+  if (!pane || window.matchMedia('(max-width: 800px)').matches) return
 
   const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? pane.clientHeight : 1
   if (event.deltaY) {

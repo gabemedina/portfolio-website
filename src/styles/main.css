@@ -7,7 +7,7 @@
   --accent: #81c4ff;
   --accent-soft: rgba(91, 174, 247, .12);
   --selection: #a9d5ff;
-  --content-width: 68.75rem;
+  --content-width: 82.5rem;
   --page-space: clamp(1.5rem, 3vw, 3.25rem);
   --inner-space: clamp(2.25rem, 4.5vw, 4.875rem);
   --mouse-x: 50vw;
