@@ -85,17 +85,18 @@ function navigateToSection(id) {
 </script>
 
 <template>
-  <main class="portfolio-shell">
-    <PortfolioSidebar
-      :person="resume.personal"
-      :sections="sections"
-      :active-section="activeSection"
-      @navigate="navigateToSection"
-    />
+  <main class="site-surface">
+    <div class="portfolio-shell">
+      <PortfolioSidebar
+        :person="resume.personal"
+        :sections="sections"
+        :active-section="activeSection"
+        @navigate="navigateToSection"
+      />
 
-    <div ref="contentPane" class="resume-pane" tabindex="-1">
-      <div class="resume-content">
-        <ResumeSection id="summary" number="01" title="Summary">
+      <div ref="contentPane" class="resume-pane" tabindex="-1">
+        <div class="resume-content">
+        <ResumeSection id="summary" title="Summary">
           <p class="summary-copy">{{ resume.summary }}</p>
           <dl class="working-note" v-if="resume.currentlyWorkingOn">
             <dt>Currently</dt>
@@ -103,31 +104,31 @@ function navigateToSection(id) {
           </dl>
         </ResumeSection>
 
-        <ResumeSection id="experience" number="02" title="Experience">
+        <ResumeSection id="experience" title="Experience">
           <div class="entry-list">
             <ExperienceItem v-for="role in resume.experience" :key="`${role.company}-${role.title}`" :role="role" />
           </div>
         </ResumeSection>
 
-        <ResumeSection id="education" number="03" title="Education">
+        <ResumeSection id="education" title="Education">
           <div class="entry-list">
             <EducationItem v-for="item in resume.education" :key="item.institution" :education="item" />
           </div>
         </ResumeSection>
 
-        <ResumeSection id="projects" number="04" title="Projects">
+        <ResumeSection id="projects" title="Projects">
           <div class="entry-list">
             <ProjectItem v-for="project in resume.projects" :key="project.name" :project="project" />
           </div>
         </ResumeSection>
 
-        <ResumeSection id="skills" number="05" title="Skills">
+        <ResumeSection id="skills" title="Skills">
           <div class="skill-grid">
             <SkillGroup v-for="group in resume.skills" :key="group.category" :group="group" />
           </div>
         </ResumeSection>
 
-        <ResumeSection id="certifications" number="06" title="Certifications">
+        <ResumeSection id="certifications" title="Certifications">
           <ul class="compact-list">
             <li v-for="item in resume.certifications" :key="item.name">
               <div><strong>{{ item.name }}</strong><span>{{ item.issuer }}</span></div>
@@ -136,7 +137,7 @@ function navigateToSection(id) {
           </ul>
         </ResumeSection>
 
-        <ResumeSection id="awards" number="07" title="Awards / Achievements">
+        <ResumeSection id="awards" title="Awards / Achievements">
           <ul class="compact-list">
             <li v-for="item in resume.awards" :key="item.title">
               <div><strong>{{ item.title }}</strong><span>{{ item.description }}</span></div>
@@ -145,7 +146,7 @@ function navigateToSection(id) {
           </ul>
         </ResumeSection>
 
-        <ResumeSection id="interests" number="08" title="Interests">
+        <ResumeSection id="interests" title="Interests">
           <ul class="interest-list" aria-label="Interests">
             <li v-for="interest in resume.interests" :key="interest">{{ interest }}</li>
           </ul>
@@ -157,6 +158,7 @@ function navigateToSection(id) {
             Download CV <span aria-hidden="true">↓</span>
           </a>
         </footer>
+        </div>
       </div>
     </div>
   </main>
