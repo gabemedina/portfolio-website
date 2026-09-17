@@ -52,13 +52,13 @@ export const resume = {
     ],
     education: [
         {
-            institution: 'University of Illinois Chicago',
+            institution: 'Louisiana State University',
             degree: 'Bachelor of Science',
             field: 'Computer Science',
-            startDate: '2015',
-            endDate: '2019',
+            startDate: '2019',
+            endDate: '2024',
             details:
-                'Coursework in distributed systems, human–computer interaction, and data structures.',
+                'Coursework in computer networks, operating systems, and database management.',
         },
     ],
     projects: [
@@ -108,9 +108,9 @@ export const resume = {
     ],
     certifications: [
         {
-            name: 'AWS Certified Developer — Associate',
-            issuer: 'Amazon Web Services',
-            year: '2024',
+            name: 'Network+',
+            issuer: 'CompTIA',
+            date: 'March 2026',
         },
     ],
     awards: [
