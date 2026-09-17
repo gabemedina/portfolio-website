@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 import PortfolioSidebar from './components/PortfolioSidebar.vue'
 import ResumeSection from './components/ResumeSection.vue'
 import ExperienceItem from './components/ExperienceItem.vue'
@@ -9,7 +9,6 @@ import SkillGroup from './components/SkillGroup.vue'
 import { resume } from './data/resume'
 import { useActiveSection } from './composables/useActiveSection'
 
-const contentPane = ref(null)
 let pointerFrame
 let pointerX = window.innerWidth / 2
 let pointerY = window.innerHeight / 2
@@ -27,7 +26,7 @@ const sections = computed(() => [
   resume.interests?.length && { id: 'interests', label: 'Interests' },
 ].filter(Boolean))
 
-const { activeSection, selectSection } = useActiveSection(sections, contentPane)
+const { activeSection, selectSection } = useActiveSection(sections)
 
 function paintCursorLight() {
   pointerFrame = undefined
@@ -44,17 +43,6 @@ function trackPointer(event) {
 function syncCursorLight() {
   const shouldTrack = cursorQuery.matches && !motionQuery.matches
   window[shouldTrack ? 'addEventListener' : 'removeEventListener']('pointermove', trackPointer, { passive: true })
-}
-
-function routeWheelToResume(event) {
-  const pane = contentPane.value
-  if (!pane || window.matchMedia('(max-width: 800px)').matches) return
-
-  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? pane.clientHeight : 1
-  if (event.deltaY) {
-    event.preventDefault()
-    pane.scrollTop += event.deltaY * unit
-  }
 }
 
 onMounted(() => {
@@ -77,26 +65,14 @@ function navigateToSection(id) {
   const target = document.getElementById(id)
   if (!target) return
 
-  const isDesktop = window.matchMedia('(min-width: 801px)').matches
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const behavior = reducedMotion ? 'auto' : 'smooth'
-
-  if (isDesktop && contentPane.value) {
-    const paneTop = contentPane.value.getBoundingClientRect().top
-    const targetTop = target.getBoundingClientRect().top
-    contentPane.value.scrollTo({
-      top: contentPane.value.scrollTop + targetTop - paneTop - 32,
-      behavior,
-    })
-    return
-  }
-
   target.scrollIntoView({ behavior, block: 'start' })
 }
 </script>
 
 <template>
-  <main class="site-surface" @wheel="routeWheelToResume">
+  <main class="site-surface">
     <div class="portfolio-shell">
       <PortfolioSidebar
         :person="resume.personal"
@@ -105,7 +81,7 @@ function navigateToSection(id) {
         @navigate="navigateToSection"
       />
 
-      <div ref="contentPane" class="resume-pane" tabindex="-1">
+      <div class="resume-pane">
         <div class="resume-content">
         <ResumeSection id="summary" title="Summary">
           <p class="summary-copy">{{ resume.summary }}</p>

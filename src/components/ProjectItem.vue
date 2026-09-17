@@ -1,10 +1,18 @@
 <script setup>
-defineProps({ project: { type: Object, required: true } })
+const props = defineProps({ project: { type: Object, required: true } })
+const monogram = props.project.name
+  .split(/\s+/)
+  .map((word) => word[0])
+  .join('')
+  .slice(0, 2)
 </script>
 
 <template>
   <article class="resume-entry project-entry">
-    <div class="entry-aside"><p>Selected work</p></div>
+    <div class="project-preview" aria-hidden="true">
+      <span>{{ monogram }}</span>
+      <small>Featured project</small>
+    </div>
     <div class="entry-main">
       <h3><a :href="project.liveUrl || project.githubUrl" target="_blank" rel="noreferrer">{{ project.name }} <span class="external-arrow" aria-hidden="true">↗</span></a></h3>
       <p class="entry-description">{{ project.description }}</p>
