@@ -20,7 +20,7 @@ export const resume = {
         ],
     },
     summary:
-        'Product-minded engineer with six years of experience designing and shipping web applications. I enjoy turning ambiguous problems into calm, useful software—and leaving the codebase clearer than I found it.',
+        'Recent computer science graduate with hands-on experience in networking, systems administration, and cloud technologies. Skilled in configuring secure environments, and troubleshooting technical issues. Eager to apply strong analytical and problem-solving skills while continuing to grow through practical experience and industry certifications.',
     currentlyWorkingOn: '',
     experience: [
         // {
