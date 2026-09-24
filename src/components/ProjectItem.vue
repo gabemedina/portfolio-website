@@ -9,9 +9,17 @@ const monogram = props.project.name
 
 <template>
     <article class="resume-entry project-entry">
-        <div class="project-preview" aria-hidden="true">
-            <span>{{ monogram }}</span>
-            <small>Featured project</small>
+        <div class="project-preview">
+            <img
+                v-if="project.image"
+                :src="project.image"
+                :alt="project.imageAlt || `${project.name} preview`"
+                loading="lazy"
+                decoding="async" />
+            <div v-else class="project-preview-fallback" aria-hidden="true">
+                <span>{{ monogram }}</span>
+                <small>Featured project</small>
+            </div>
         </div>
         <div class="entry-main">
             <h3>
@@ -39,9 +47,9 @@ const monogram = props.project.name
                 </li>
             </ul>
             <div class="project-links">
-                <a :href="project.githubUrl" target="_blank" rel="noreferrer"
+                <!-- <a :href="project.githubUrl" target="_blank" rel="noreferrer"
                     >Source <span aria-hidden="true">↗</span></a
-                >
+                > -->
                 <a
                     v-if="project.liveUrl"
                     :href="project.liveUrl"

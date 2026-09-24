@@ -103,14 +103,14 @@ function navigateToSection(id) {
                         </dl>
                     </ResumeSection>
 
-                    <ResumeSection id="experience" title="Experience">
+                    <!-- <ResumeSection id="experience" title="Experience">
                         <div class="entry-list">
                             <ExperienceItem
                                 v-for="role in resume.experience"
                                 :key="`${role.company}-${role.title}`"
                                 :role="role" />
                         </div>
-                    </ResumeSection>
+                    </ResumeSection> -->
 
                     <ResumeSection id="education" title="Education">
                         <div class="entry-list">
@@ -143,7 +143,14 @@ function navigateToSection(id) {
                                 :project="project" />
                         </div>
                     </ResumeSection>
-
+                    <footer class="resume-footer">
+                        <a
+                            :href="resume.personal.resumeUrl"
+                            target="_blank"
+                            rel="noreferrer">
+                            Full Resume <span aria-hidden="true">↗</span>
+                        </a>
+                    </footer>
                     <ResumeSection id="skills" title="Skills">
                         <div class="skill-grid">
                             <SkillGroup
@@ -168,12 +175,6 @@ function navigateToSection(id) {
           </ul>
           <p class="site-note">Designed and built with Vue. Content lives in one data file.</p>
         </ResumeSection> -->
-
-                    <footer class="resume-footer">
-                        <a :href="resume.personal.resumeUrl" download>
-                            Download CV <span aria-hidden="true">↓</span>
-                        </a>
-                    </footer>
                 </div>
             </div>
         </div>
