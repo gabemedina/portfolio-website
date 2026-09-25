@@ -56,7 +56,7 @@ export const resume = {
             image: homelabImage,
             imageAlt: 'Home Network Lab',
             description:
-                'An open-source operations dashboard that turns service health, traces, and release data into one focused view.',
+                'A Proxmox-based home lab setup for testing and learning networking, virtualization, and containerization technologies.',
             technologies: ['Proxmox', 'Docker', 'Kubernetes'],
             githubUrl: 'https://github.com/yourusername/telemetry-console',
             // liveUrl: 'https://example.com',
@@ -66,7 +66,7 @@ export const resume = {
             image: activeDirectoryImage,
             imageAlt: 'Active Directory & Identity Management Setup',
             description:
-                'A lightweight release-notes workflow that helps small teams write, review, and publish product updates.',
+                'A comprehensive Active Directory setup for managing users, groups, and policies in a Windows Server environment.',
             technologies: [
                 'Windows Server',
                 'Active Directory',
@@ -79,7 +79,7 @@ export const resume = {
             image: honeypotImage,
             imageAlt: 'Cloud Threat Intelligence & Honeypot Deployment',
             description:
-                'A lightweight release-notes workflow that helps small teams write, review, and publish product updates.',
+                'A deployment of cloud-based threat intelligence tools and honeypots for monitoring and analyzing cyber threats.',
             technologies: ['Python', 'Docker', 'Kubernetes'],
             githubUrl: 'https://github.com/yourusername/patch-notes',
         },
@@ -88,7 +88,7 @@ export const resume = {
             image: trainingAppImage,
             imageAlt: 'Weight Training App',
             description:
-                'A lightweight release-notes workflow that helps small teams write, review, and publish product updates.',
+                'A web application for tracking weight training exercises, sets, and reps, with user authentication and data visualization features.',
             technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
             githubUrl: 'https://github.com/yourusername/patch-notes',
         },
